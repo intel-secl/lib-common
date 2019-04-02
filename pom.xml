@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.intel.mtwilson.core</groupId>
+    <artifactId>lib-common</artifactId>
+    <version>1.2.2</version>
+    
+    <description>
+        This is a repository used to store common classes shared amongst the new Library model (repos starting with lib-*).
+    </description>
+    <packaging>jar</packaging>
+    
+    <parent>
+        <groupId>com.intel.mtwilson.maven</groupId>
+        <artifactId>mtwilson-maven-java</artifactId>
+        <version>4.4-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+    
+    <organization>
+        <name>Intel Corporation</name>
+    </organization>
+    
+    <licenses>
+        <license>
+            <name>Copyright (c) 2019 Intel Corporation. SPDX-License-Identifier: BSD-3-Clause.</name>
+        </license>
+    </licenses>
+    
+    <dependencies>
+        <!-- common-java -->
+        <dependency>
+            <groupId>com.intel.mtwilson.util</groupId>
+            <artifactId>mtwilson-util-crypto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.intel.mtwilson.util</groupId>
+            <artifactId>mtwilson-util-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.intel.mtwilson.util</groupId>
+            <artifactId>mtwilson-util-jaxrs2-client</artifactId>
+        </dependency>
+        
+        <!-- external -->
+        <!-- bcpkix needs to be downloaded for bcmail to work -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.60</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcmail-jdk15on</artifactId>
+            <version>1.60</version>
+        </dependency>
+    </dependencies>
+    
+</project>

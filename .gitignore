@@ -1,0 +1,13 @@
+.svn
+target/*
+.settings
+.project
+.classpath
+pom.xml.versionsBackup
+pom.xml.releaseBackup
+derby.log
+/nb-configuration.xml
+~*
+*.tmp
+.idea/
+*.iml
