@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+Copyright 2015 Intel Corporation. All rights reserved.
+-->
+<xs:schema
+        attributeFormDefault="unqualified"
+        elementFormDefault="qualified"
+        targetNamespace="lib:wml:manifests:1.0"
+        xmlns="lib:wml:manifests:1.0"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:annox="http://annox.dev.java.net"
+        jaxb:extensionBindingPrefixes="annox"
+        jaxb:version="2.1">
+
+    <xs:element name="Manifest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="File" type="file"/>
+                    <xs:element name="Dir" type="dir"/>
+                    <xs:element name="Symlink" type="symlink"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="DigestAlg"/>
+            <xs:attribute type="xs:string" name="Label"/>
+            <xs:attribute type="xs:string" name="Uuid"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="manifestType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <!-- Following annotation has added to populate JsonType annotation on manifestType.
+                     This will populate type field in Json serialized object for conversion between
+                     Java POJO and XML. -->
+                <annox:annotate target="class">
+                    @com.fasterxml.jackson.annotation.JsonTypeInfo(
+                    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+                    include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY,
+                    property = "type")
+                </annox:annotate>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Path" use="required"/>
+                <xs:attribute type="xs:string" name="SearchType" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="file">
+        <xs:simpleContent>
+            <xs:extension base="manifestType"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="symlink">
+        <xs:simpleContent>
+            <xs:extension base="manifestType"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="dir">
+        <xs:simpleContent>
+            <xs:extension base="manifestType">
+                <xs:attribute type="xs:string" name="Include" use="optional"/>
+                <xs:attribute type="xs:string" name="Exclude" use="optional"/>
+                <xs:attribute type="xs:string" name="FilterType" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+</xs:schema>

@@ -27,7 +27,7 @@ public class TpmQuoteResponse {
     public X509Certificate aik;
     public byte[] quote;
     public String eventLog; // base64-encoded xml ....
-    public String tcbMeasurement;
+    public List<String> tcbMeasurements;
     public List<String> selectedPcrBanks;
     
     // added for assetTag attestation based on sha1(nonce | assetTag

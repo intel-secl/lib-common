@@ -33,8 +33,16 @@ public final class IdentityProofRequest {
     public void setEkBlob(byte[] ekBlob) {
         this.ekBlob = ekBlob;
     }
-    
-    
+
+    public byte[] getHeader() {
+        return header;
+    }
+
+    public void setHeader(byte[] header) {
+        this.header = header;
+    }
+
+    byte[] header;
     byte[] secret;
     byte[] credential;
 

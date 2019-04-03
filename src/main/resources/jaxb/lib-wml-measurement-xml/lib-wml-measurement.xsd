@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+Copyright 2015 Intel Corporation. All rights reserved.
+-->
+<xs:schema
+        attributeFormDefault="unqualified"
+        elementFormDefault="qualified"
+        targetNamespace="lib:wml:measurements:1.0"
+        xmlns="lib:wml:measurements:1.0"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:annox="http://annox.dev.java.net"
+        jaxb:extensionBindingPrefixes="annox"
+        jaxb:version="2.1">
+
+    <xs:element name="Measurement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="File" type="fileMeasurementType"/>
+                    <xs:element name="Dir" type="directoryMeasurementType"/>
+                    <xs:element name="Symlink" type="symlinkMeasurementType"/>
+                </xs:choice>
+                <xs:element name="CumulativeHash" type="cumulativeHashType"/>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="DigestAlg"/>
+            <xs:attribute type="xs:string" name="Label"/>
+            <xs:attribute type="xs:string" name="Uuid"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="cumulativeHashType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="measurementType" abstract="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <!-- Following annotation has added to populate JsonType annotation on measurementType.
+                     This will populate type field in Json serialized object for conversion between
+                     Java POJO and XML. -->
+                <annox:annotate target="class">
+                    @com.fasterxml.jackson.annotation.JsonTypeInfo(
+                    use = com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME,
+                    include = com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY,
+                    property = "type")
+                </annox:annotate>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Path" use="required"/>
+                <xs:attribute type="xs:string" name="SearchType" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="fileMeasurementType">
+        <xs:simpleContent>
+            <xs:extension base="measurementType"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="symlinkMeasurementType">
+        <xs:simpleContent>
+            <xs:extension base="measurementType"/>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="directoryMeasurementType">
+        <xs:simpleContent>
+            <xs:extension base="measurementType">
+                <xs:attribute type="xs:string" name="Include" use="optional"/>
+                <xs:attribute type="xs:string" name="Exclude" use="optional"/>
+                <xs:attribute type="xs:string" name="FilterType" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+</xs:schema>

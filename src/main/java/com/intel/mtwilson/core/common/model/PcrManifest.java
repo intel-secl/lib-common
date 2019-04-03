@@ -7,7 +7,7 @@ package com.intel.mtwilson.core.common.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.intel.dcsg.cpg.validation.ObjectModel;
 import com.intel.dcsg.cpg.crypto.DigestAlgorithm;
-import static com.intel.dcsg.cpg.crypto.DigestAlgorithm.SHA1;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.intel.dcsg.cpg.crypto.Sha1Digest;
@@ -51,7 +51,7 @@ public class PcrManifest extends ObjectModel {
     
     private final PcrEventLogSha1[] pcrEventLogsSha1 = new PcrEventLogSha1[24];
     private final PcrEventLogSha256[] pcrEventLogsSha256 = new PcrEventLogSha256[24];
-    private String measurementXml;
+    private List<String> measurementXmls;
     private byte[] ProvisionedTag; //this is additional field added to support the new way of assetag attestation -- Haidong
 
     public byte[] getProvisionedTag() {
@@ -64,7 +64,7 @@ public class PcrManifest extends ObjectModel {
 
     
     public PcrManifest() {
-        this.measurementXml = "";
+        this.measurementXmls = new ArrayList<>();
         this.ProvisionedTag = null;
     }
     
@@ -444,12 +444,12 @@ public class PcrManifest extends ObjectModel {
         
     }
 
-    public String getMeasurementXml() {
-        return measurementXml;
+    public List<String> getMeasurementXmls() {
+        return measurementXmls;
     }
 
-    public void setMeasurementXml(String measurementXml) {
-        this.measurementXml = measurementXml;
+    public void setMeasurementXmls(List<String> measurementXmls) {
+        this.measurementXmls = measurementXmls;
     }
 
     private PcrEventLog[] getEventLogBank(DigestAlgorithm bank) {

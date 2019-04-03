@@ -35,6 +35,14 @@ public class HostManifest {
     @JsonDeserialize(using=X509AttributeCertificateDeserializer.class)
     private X509AttributeCertificate tagCertificate;
 
+    @JsonSerialize(using=X509CertificateSerializer.class)
+    @JsonDeserialize(using=X509CertificateDeserializer.class)
+    private X509Certificate bindingKeyCertificate;
+    
+    private boolean tpmEnabled;
+    private boolean txtEnabled;
+
+
     public X509Certificate getAikCertificate() {
         return aikCertificate;
     }
@@ -74,5 +82,29 @@ public class HostManifest {
     public void setTagCertificate(X509AttributeCertificate value) {
         tagCertificate = value;
     }
+
+    public boolean getTpmEnabled() {
+        return tpmEnabled;
+    }
+
+    public void setTpmEnabled(boolean value) {
+        tpmEnabled = value;
+    }
+
+    public boolean getTxtEnabled() {
+        return txtEnabled;
+    }
+
+    public void setTxtEnabled(boolean value) {
+        txtEnabled = value;
+    }
+    public X509Certificate getBindingKeyCertificate() {
+        return bindingKeyCertificate;
+    }
+
+    public void setBindingKeyCertificate(X509Certificate bindingKeyCertificate) {
+        this.bindingKeyCertificate = bindingKeyCertificate;
+    }
+
 
 }

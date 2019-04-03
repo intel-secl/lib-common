@@ -21,7 +21,12 @@ import java.util.List;
 import java.util.Properties;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
+
+import com.intel.wml.manifest.xml.Manifest;
+import com.intel.wml.measurement.xml.Measurement;
 import org.apache.commons.lang.StringUtils;
+
+import static org.apache.commons.math3.complex.Complex.INF;
 
 /**
  *
@@ -707,5 +712,79 @@ public class TrustAgentClient extends MtWilsonClient {
                 .post(Entity.json(obj), VMQuoteResponse.class);
                 
         return vmQuoteResponse;
+    }
+
+    /**
+     * Deploys application manifest to host, which is then used to measure application by application agent
+     * @param manifest - Manifest i.e list of files directories and symlinks in XML format
+     * @since Mt.Wilson 3.0
+     * @mtwContentTypeReturned JSON
+     * @mtwMethodType POST
+     * @mtwSampleRestCall
+     * <div style="word-wrap: break-word; width: 1024px"><pre><xmp>
+     * https://server.com:1443/v2/deploy/manifest
+     *
+     * Headers:
+     * Content-Type: text/plain
+     * Accept: text/plain
+     *
+     * Input:
+     * <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Manifest xmlns="lib:wml:manifests:1.0" DigestAlg="SHA256" Label="ISL_Applications123" Uuid="834076cd-f733-4cca-a417-113fac90adc7"><Dir Include=".*" Exclude="" Path="/opt/trustagent/hypertext/WEB-INF"/><Symlink Path="/opt/trustagent/bin/tpm_nvinfo"/><File Path="/opt/trustagent/bin/module_analysis_da.sh"/></Manifest>
+     *
+     * Output:
+     *
+     * </xmp></pre></div>
+     * @mtwSampleApiCall
+     * <div style="word-wrap: break-word; width: 1024px"><pre><xmp>
+     *   TrustAgentClient client = new TrustAgentClient(properties, new TlsConnection(url, tlsPolicy));
+     *   String manifest = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Manifest xmlns=\"lib:wml:manifests:1.0\" DigestAlg=\"SHA256\" Label=\"ISL_Applications123\" Uuid=\"834076cd-f733-4cca-a417-113fac90adc7\"><Dir Include=\".*\" Exclude=\"\" Path=\"/opt/trustagent/hypertext/WEB-INF\"/><Symlink Path=\"/opt/trustagent/bin/tpm_nvinfo\"/><File Path=\"/opt/trustagent/bin/module_analysis_da.sh\"/></Manifest>";
+     *   client.deployManifest(manifest);
+     * </xmp></pre></div>
+     */
+    public void deployManifest(Manifest manifest) {
+        log.debug("target: {}", getTarget().getUri().toString());
+        getTarget()
+                .path("/deploy/manifest")
+                .request()
+                .accept(MediaType.APPLICATION_XML)
+                .post(Entity.entity(manifest, MediaType.APPLICATION_XML), Manifest.class);
+    }
+
+    /**
+     * Measures application manifest provided as input, which is then used to generate software flavor
+     * @param manifest - Manifest i.e list of files directories and symlinks in XML format
+     * @return measurement - Measurement i.e measured list of files directories and symlinks in XML format
+     * @since Mt.Wilson 3.0
+     * @mtwContentTypeReturned JSON
+     * @mtwMethodType POST
+     * @mtwSampleRestCall
+     * <div style="word-wrap: break-word; width: 1024px"><pre><xmp>
+     * https://server.com:1443/v2/host/application-measurement
+     *
+     * Headers:
+     * Content-Type: text/plain
+     * Accept: text/plain
+     *
+     * Input:
+     * <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Manifest xmlns="lib:wml:manifests:1.0" DigestAlg="SHA256" Label="ISL_Applications123" Uuid="834076cd-f733-4cca-a417-113fac90adc7"><Dir Include=".*" Exclude="" Path="/opt/trustagent/hypertext/WEB-INF"/><Symlink Path="/opt/trustagent/bin/tpm_nvinfo"/><File Path="/opt/trustagent/bin/module_analysis_da.sh"/></Manifest>
+     *
+     * Output:
+     * <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Measurement xmlns="lib:wml:measurements:1.0" DigestAlg="SHA256" Label="ISL_Applications123" Uuid="834076cd-f733-4cca-a417-113fac90adc7"><Dir Exclude="" Include=".*" Path="/opt/trustagent/hypertext/WEB-INF">32e57aeaaedca32e788a358c3ffbc62a3c654c49ca2fa8344705dae78e1fea1e</Dir><Symlink Path="/opt/trustagent/bin/tpm_nvinfo">dd7ef6572531681378526a45a67f3c8306fe326fe756b53ecfe796ecc02bc885</Symlink><File Path="/opt/trustagent/bin/module_analysis_da.sh">0896695e930565be3c8e85cc4a49a2a0662fa5c004473dfe24728bacb2a74798</File><CumulativeHash>7efd6a83adfcd72560b7a804fc5b97d59550385f69d49414273f2a0c1e625230</CumulativeHash></Measurement>
+     *
+     * </xmp></pre></div>
+     * @mtwSampleApiCall
+     * <div style="word-wrap: break-word; width: 1024px"><pre><xmp>
+     *   TrustAgentClient client = new TrustAgentClient(properties, new TlsConnection(url, tlsPolicy));
+     *   String manifest = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Manifest xmlns=\"lib:wml:manifests:1.0\" DigestAlg=\"SHA256\" Label=\"ISL_Applications123\" Uuid=\"834076cd-f733-4cca-a417-113fac90adc7\"><Dir Include=\".*\" Exclude=\"\" Path=\"/opt/trustagent/hypertext/WEB-INF\"/><Symlink Path=\"/opt/trustagent/bin/tpm_nvinfo\"/><File Path=\"/opt/trustagent/bin/module_analysis_da.sh\"/></Manifest>";
+     *   String measurement = client.getVMAttestationStatus(manifest);
+     * </xmp></pre></div>
+     */
+    public Measurement getMeasurementFromManifest(Manifest manifest) {
+        log.debug("target: {}", getTarget().getUri().toString());
+        return getTarget()
+                .path("/host/application-measurement")
+                .request()
+                .accept(MediaType.APPLICATION_XML)
+                .post(Entity.entity(manifest, MediaType.APPLICATION_XML), Measurement.class);
     }
 }

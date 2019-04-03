@@ -5,7 +5,9 @@
 package com.intel.mtwilson.core.common.model;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -29,6 +31,8 @@ public class HostInfo {
     private String noOfSockets;
     private String TpmEnabled;
     private String TxtEnabled;
+    private String tbootInstalled;
+    private Map<HardwareFeature, HardwareFeatureDetails> hardwareFeatures;
 
     public String getNoOfSockets() {
         return noOfSockets;
@@ -148,5 +152,21 @@ public class HostInfo {
 
     public void setTxtEnabled(String TxtEnabled) {
         this.TxtEnabled = TxtEnabled;
-    }    
+    }
+
+    public String getTbootInstalled() {
+        return tbootInstalled;
+    }
+
+    public void setTbootInstalled(String tbootInstalled) {
+        this.tbootInstalled = tbootInstalled;
+    }
+
+    public Map<HardwareFeature, HardwareFeatureDetails> getHardwareFeatures() {
+        return hardwareFeatures;
+    }
+
+    public void setHardwareFeatures(Map<HardwareFeature, HardwareFeatureDetails> hardwareFeatures) {
+        this.hardwareFeatures = hardwareFeatures;
+    }
 }
