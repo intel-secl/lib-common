@@ -5,10 +5,10 @@
 package com.intel.mtwilson.core.common.model;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import java.util.List;
 
 /**
- *
  * @author zaaquino
  */
 
@@ -45,7 +45,7 @@ public class HostInfo {
     public void setHostName(String hostName) {
         this.hostName = hostName;
     }
-    
+
     public String getBiosName() {
         return biosName;
     }
@@ -148,5 +148,5 @@ public class HostInfo {
 
     public void setTxtEnabled(String TxtEnabled) {
         this.TxtEnabled = TxtEnabled;
-    }    
+    }
 }

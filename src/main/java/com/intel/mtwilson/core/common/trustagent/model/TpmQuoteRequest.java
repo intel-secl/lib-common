@@ -4,10 +4,8 @@
  */
 package com.intel.mtwilson.core.common.trustagent.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.ArrayList;
-import org.apache.commons.lang.StringUtils;
 import java.util.List;
 
 /**

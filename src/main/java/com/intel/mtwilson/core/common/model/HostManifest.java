@@ -31,7 +31,6 @@ public class HostManifest {
     private HostInfo hostInfo;
     private PcrManifest pcrManifest;
     
-    //@JsonSerialize(using=X509AttributeCertificateSerializer.class)
     @JsonDeserialize(using=X509AttributeCertificateDeserializer.class)
     private X509AttributeCertificate tagCertificate;
 

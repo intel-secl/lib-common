@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Properties;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import org.apache.commons.lang.StringUtils;
 
 /**
  *

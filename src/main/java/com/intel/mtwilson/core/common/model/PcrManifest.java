@@ -7,14 +7,12 @@ package com.intel.mtwilson.core.common.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.intel.dcsg.cpg.validation.ObjectModel;
 import com.intel.dcsg.cpg.crypto.DigestAlgorithm;
-import static com.intel.dcsg.cpg.crypto.DigestAlgorithm.SHA1;
 import java.util.ArrayList;
 import java.util.List;
 import com.intel.dcsg.cpg.crypto.Sha1Digest;
 import com.intel.dcsg.cpg.crypto.Sha256Digest;
 import java.util.LinkedHashMap;
 import java.util.Map;
-//import org.codehaus.jackson.annotate.JsonValue;
 
 /**
  * The PcrManifest class represents a list of PCR numbers, their values,
@@ -47,8 +45,7 @@ import java.util.Map;
 public class PcrManifest extends ObjectModel {
     private final PcrSha1[] sha1pcrs = new PcrSha1[24];    
     private final PcrSha256[] sha2pcrs = new PcrSha256[24];
-    //private final Pcr<Sha512Digest>[] sha512pcrs = new Pcr[24];
-    
+
     private final PcrEventLogSha1[] pcrEventLogsSha1 = new PcrEventLogSha1[24];
     private final PcrEventLogSha256[] pcrEventLogsSha256 = new PcrEventLogSha256[24];
     private String measurementXml;
@@ -427,21 +424,6 @@ public class PcrManifest extends ObjectModel {
         if( countPcrEntries == 0 ) {
             fault("Pcr manifest does not have any entries");
         }
-        // following section commented out because it is not an error to be missing pcr event logs ..... well the policy should decide that ! 
-        /*
-        int countPcrEventLogEntries = 0;
-        for(int i=0; i<pcrEventLogs.length; i++) {
-            if( pcrEventLogs[i] != null ) {
-                countPcrEventLogEntries++;
-                if( !pcrEventLogs[i].isValid() ) {
-                    fault(pcrEventLogs[i], String.format("PcrEventLog %d is invalid", i));
-                }
-            }
-        }
-        if( countPcrEventLogEntries == 0 ) {
-            fault("Pcr manifest does not have any event log entries");
-        }*/
-        
     }
 
     public String getMeasurementXml() {

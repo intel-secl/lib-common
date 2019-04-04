@@ -56,7 +56,6 @@ public abstract class Measurement<T extends AbstractDigest> extends ObjectModel 
         return info;
     } // other information, such as what vmware provides with each measurement
 
-//    @JsonValue
     @Override
     public String toString() {
         return String.format("%s %s", digest.toString(), label);

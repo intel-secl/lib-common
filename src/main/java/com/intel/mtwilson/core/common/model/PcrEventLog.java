@@ -8,14 +8,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.intel.dcsg.cpg.crypto.Sha1Digest;
 import com.intel.dcsg.cpg.crypto.AbstractDigest;
 import com.intel.dcsg.cpg.crypto.DigestAlgorithm;
 import com.intel.dcsg.cpg.validation.ObjectModel;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-//import org.codehaus.jackson.annotate.JsonValue;
 
 /**
  * Represents an ordered list of modules (hash,description), options, or other data that
@@ -92,7 +90,6 @@ public abstract class PcrEventLog<T extends Measurement> extends ObjectModel {
      * 
      * @see java.lang.Object#toString()
      */
-//    @JsonValue
     @Override
     public String toString() {
         String result = String.format("PCR %d module manifest:", pcrIndex.toInteger());
@@ -126,7 +123,6 @@ public abstract class PcrEventLog<T extends Measurement> extends ObjectModel {
         if( other == this ) { return true; }
         if( other.getClass() != this.getClass() ) { return false; }
         PcrEventLog rhs = (PcrEventLog)other;
-//        EqualsBuilder builder = new EqualsBuilder(); // org.apache.commons.lang3.builder.EqualsBuilder
         if( !pcrIndex.equals(rhs.pcrIndex)) { return false; }
         if( !eventLog.equals(rhs.eventLog)) { return false; }
         return true;
