@@ -9,6 +9,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Set;
 /**
  *
  * @author zaaquino
@@ -33,6 +34,7 @@ public class HostInfo {
     private String TxtEnabled;
     private String tbootInstalled;
     private Map<HardwareFeature, HardwareFeatureDetails> hardwareFeatures;
+    private Set<String> installedComponents;
 
     public String getNoOfSockets() {
         return noOfSockets;
@@ -168,5 +170,13 @@ public class HostInfo {
 
     public void setHardwareFeatures(Map<HardwareFeature, HardwareFeatureDetails> hardwareFeatures) {
         this.hardwareFeatures = hardwareFeatures;
+    }
+
+    public Set<String> getInstalledComponents() {
+        return installedComponents;
+    }
+
+    public void setInstalledComponents(Set<String> installedComponents) {
+        this.installedComponents = installedComponents;
     }
 }
