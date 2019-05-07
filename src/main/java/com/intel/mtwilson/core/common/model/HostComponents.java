@@ -4,6 +4,9 @@
  */
 package com.intel.mtwilson.core.common.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author hmgowda
@@ -20,5 +23,13 @@ public enum HostComponents {
 
     public String getValue() {
         return value;
+    }
+    
+    public static List<String> getValues() {
+        List<String>  hostComponents = new ArrayList<>();
+        for(HostComponents hostComponent: values()) {
+            hostComponents.add(hostComponent.getValue());
+        }
+        return hostComponents;
     }
 }
