@@ -8,7 +8,6 @@ import com.intel.dcsg.cpg.validation.ObjectModel;
 import java.math.BigInteger;
 import org.apache.commons.codec.binary.Hex;
 import com.fasterxml.jackson.annotation.JsonValue;
-//import org.codehaus.jackson.annotate.JsonValue;
 
 /**
  * If support for base64 and hex is required they should be implemented as
@@ -30,7 +29,6 @@ public class Nonce extends ObjectModel {
 
     @Override
     protected void validate() {
-//        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     /**

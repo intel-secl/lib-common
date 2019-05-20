@@ -4,6 +4,11 @@
  */
 package com.intel.mtwilson.core.common.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.List;
@@ -14,9 +19,35 @@ import java.util.Set;
  *
  * @author zaaquino
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "host_info", propOrder = {
+    "timeStamp",
+    "clientIp",
+    "errorCode",
+    "errorMessage",
+    "osName",
+    "osVersion",
+    "biosOem",
+    "biosVersion",
+    "vmmName",
+    "vmmVersion",
+    "processorInfo",
+    "hostUUID"
+})
 
 @JacksonXmlRootElement(localName = "host_info")
 public class HostInfo {
+    @XmlElement(name = "timeStamp", required = true)
+    protected String timeStamp;
+    @XmlElement(name = "clientIp",required = true)
+    protected String clientIp;
+    @XmlElement(name = "errorCode",required = true)
+    protected byte errorCode;
+    @XmlElement(name = "errorMessage",required = true)
+    protected String errorMessage;
+    @XmlElement(name = "hostUUID",required = true)
+    protected String hostUUID;
+
     private String hostName;
     private String biosName;
     private String biosVersion;
@@ -43,6 +74,13 @@ public class HostInfo {
     public void setNoOfSockets(String noOfSockets) {
         this.noOfSockets = noOfSockets;
     }
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+	
+	 public void setTimeStamp(String value) {
+        this.timeStamp = value;
+    }
 
     public String getHostName() {
         return hostName;
@@ -52,6 +90,29 @@ public class HostInfo {
         this.hostName = hostName;
     }
     
+/**
+     * Gets the value of the clientIp property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getClientIp() {
+        return clientIp;
+    }
+
+    /**
+     * Sets the value of the clientIp property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setClientIp(String value) {
+        this.clientIp = value;
+    }
     public String getBiosName() {
         return biosName;
     }
@@ -64,6 +125,22 @@ public class HostInfo {
         return biosVersion;
     }
 
+ /**
+     * Gets the value of the errorCode property.
+     * 
+     */
+    public byte getErrorCode() {
+        return errorCode;
+    }
+
+    /**
+     * Sets the value of the errorCode property.
+     * 
+     */
+    public void setErrorCode(byte value) {
+        this.errorCode = value;
+    }
+	
     public void setBiosVersion(String biosVersion) {
         this.biosVersion = biosVersion;
     }
@@ -72,7 +149,14 @@ public class HostInfo {
         return hardwareUuid;
     }
 
-    public void setHardwareUuid(String hardwareUuid) {
+     public String getErrorMessage() {
+        return errorMessage;
+	 }
+	 public void setErrorMessage(String value) {
+	      this.errorMessage = value;
+     }
+    
+	public void setHardwareUuid(String hardwareUuid) {
         this.hardwareUuid = hardwareUuid;
     }
 

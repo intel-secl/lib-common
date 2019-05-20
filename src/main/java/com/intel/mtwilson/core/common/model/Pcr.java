@@ -13,8 +13,6 @@ import com.intel.dcsg.cpg.crypto.DigestAlgorithm;
 import com.intel.dcsg.cpg.validation.ObjectModel;
 import java.util.Objects;
 
-//import org.codehaus.jackson.annotate.JsonValue;
-
 /**
  * BUG #497   renamed to "Pcr" to represent a pair (index,value)
  * the value can continue to be represented as Sha1Digest. 
@@ -50,7 +48,6 @@ public abstract class Pcr<T extends AbstractDigest> extends ObjectModel {
      * @return 
      * @see java.lang.Object#toString()
      */
-//    @JsonValue
     @Override
     public String toString() {
         return String.format("%s: %d: %s", getPcrBank(), pcrIndex.toInteger(), getValue().toString());
@@ -79,8 +76,7 @@ public abstract class Pcr<T extends AbstractDigest> extends ObjectModel {
         if( pcrIndex == null ) { fault("Pcr index is null"); }
         else if( !pcrIndex.isValid() ) { fault(pcrIndex, "Invalid pcr index"); }
         if( getValue() == null ) { fault("Digest is null"); }
-        //else if (!pcrValue.isValid()) { fault(pcrValue, "Invalid pcr value"); }
-        
+
         validateOverride();                
     }
     
