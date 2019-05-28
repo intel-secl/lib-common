@@ -6,7 +6,7 @@ package com.intel.mtwilson.core.common.tag.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.intel.dcsg.cpg.crypto.Sha256Digest;
+import com.intel.dcsg.cpg.crypto.Sha384Digest;
 import com.intel.dcsg.cpg.io.UUID;
 import com.intel.mtwilson.core.common.model.OID;
 import com.intel.mtwilson.core.common.model.x509.UTF8NameValueMicroformat;
@@ -63,8 +63,8 @@ public class X509AttributeCertificate {
         return encoded;
     }
     
-    public byte[] getFingerprintSha256() {
-        return Sha256Digest.digestOf(encoded).toByteArray();
+    public byte[] getFingerprintSha384() {
+        return Sha384Digest.digestOf(encoded).toByteArray();
     }
     
     public String getIssuer() {

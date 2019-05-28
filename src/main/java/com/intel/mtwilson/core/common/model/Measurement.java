@@ -23,7 +23,8 @@ import java.util.Map;
         property = "digest_type")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = MeasurementSha1.class),
-    @JsonSubTypes.Type(value = MeasurementSha256.class)
+    @JsonSubTypes.Type(value = MeasurementSha256.class),
+    @JsonSubTypes.Type(value = MeasurementSha384.class)
 })
 public abstract class Measurement<T extends AbstractDigest> extends ObjectModel {
 
