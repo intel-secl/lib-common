@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.intel.dcsg.cpg.crypto.Sha384Digest;
 import com.intel.dcsg.cpg.io.UUID;
+import com.intel.dcsg.cpg.validation.Regex;
 import com.intel.mtwilson.core.common.model.OID;
 import com.intel.mtwilson.core.common.model.x509.UTF8NameValueMicroformat;
 import com.intel.mtwilson.core.common.model.x509.UTF8NameValueSequence;
@@ -40,6 +41,7 @@ import org.slf4j.LoggerFactory;
  * interested in.
  * 
  * @author jbuhacoff
+ *
  */
 public class X509AttributeCertificate {
 
@@ -58,15 +60,16 @@ public class X509AttributeCertificate {
     private X509AttributeCertificate(byte[] encoded) {
         this.encoded = encoded;
     }
-    
+
     public byte[] getEncoded() {
         return encoded;
     }
-    
+
     public byte[] getFingerprintSha384() {
         return Sha384Digest.digestOf(encoded).toByteArray();
     }
-    
+
+    @Regex("(?:[a-zA-Z0-9\\[\\]$@(){}_\\.\\=\\, |:-]+)")
     public String getIssuer() {
         return issuer;
     }
@@ -99,7 +102,8 @@ public class X509AttributeCertificate {
         }
         return (List<T>)tagsOther;
     }
-    
+
+    @Regex("(?:[a-zA-Z0-9\\[\\]$@(){}_\\.\\=\\,\\+\\/ |:-]+)")
     @Override
     public String toString() {
         return Base64.encodeBase64String(encoded);
