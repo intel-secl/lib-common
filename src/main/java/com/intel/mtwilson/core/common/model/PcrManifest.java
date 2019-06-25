@@ -49,10 +49,10 @@ public class PcrManifest extends ObjectModel {
 
     private final PcrEventLogSha1[] pcrEventLogsSha1 = new PcrEventLogSha1[24];
     private final PcrEventLogSha256[] pcrEventLogsSha256 = new PcrEventLogSha256[24];
-    private List<String> measurementXmls;
-    private byte[] ProvisionedTag; //this is additional field added to support the new way of assetag attestation -- Haidong
+   // private List<String> measurementXmls;
+   // private byte[] ProvisionedTag; //this is additional field added to support the new way of assetag attestation -- Haidong
 
-    public byte[] getProvisionedTag() {
+    /*public byte[] getProvisionedTag() {
         return ProvisionedTag;
     }
 
@@ -64,7 +64,7 @@ public class PcrManifest extends ObjectModel {
     public PcrManifest() {
         this.measurementXmls = new ArrayList<>();
         this.ProvisionedTag = null;
-    }
+    }*/
     
     public void setPcr(DigestAlgorithm bank, Pcr pcr) {
         switch(bank) {
@@ -427,13 +427,13 @@ public class PcrManifest extends ObjectModel {
         }
     }
 
-    public List<String> getMeasurementXmls() {
+   /* public List<String> getMeasurementXmls() {
         return measurementXmls;
     }
 
     public void setMeasurementXmls(List<String> measurementXmls) {
         this.measurementXmls = measurementXmls;
-    }
+    }*/
 
     private PcrEventLog[] getEventLogBank(DigestAlgorithm bank) {
         switch(bank) {

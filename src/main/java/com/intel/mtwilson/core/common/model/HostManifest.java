@@ -13,6 +13,8 @@ import com.intel.mtwilson.jackson.X509CertificateDeserializer;
 import com.intel.mtwilson.jackson.X509CertificateSerializer;
 import com.intel.mtwilson.core.common.tag.model.json.X509AttributeCertificateDeserializer;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -40,6 +42,29 @@ public class HostManifest {
     
     private boolean tpmEnabled;
     private boolean txtEnabled;
+    private List<String> measurementXmls;
+    private byte[] ProvisionedTag;
+
+    public HostManifest() {
+        this.measurementXmls = new ArrayList<>();
+        this.ProvisionedTag = null;
+    }
+
+	public byte[] getProvisionedTag() {
+        return ProvisionedTag;
+    }
+
+    public void setProvisionedTag(byte[] ProvisionedTag) {
+        this.ProvisionedTag = ProvisionedTag;
+    }	
+	
+	public List<String> getMeasurementXmls() {
+        return measurementXmls;
+    }
+
+    public void setMeasurementXmls(List<String> measurementXmls) {
+        this.measurementXmls = measurementXmls;
+    }
 
 
     public X509Certificate getAikCertificate() {
