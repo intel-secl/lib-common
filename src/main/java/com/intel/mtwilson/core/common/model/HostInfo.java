@@ -7,7 +7,6 @@ package com.intel.mtwilson.core.common.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
@@ -64,6 +63,7 @@ public class HostInfo {
     private String TpmEnabled;
     private String TxtEnabled;
     private String tbootInstalled;
+    private String isDockerEnv;
     private Map<HardwareFeature, HardwareFeatureDetails> hardwareFeatures;
     private Set<String> installedComponents;
 
@@ -262,5 +262,13 @@ public class HostInfo {
 
     public void setInstalledComponents(Set<String> installedComponents) {
         this.installedComponents = installedComponents;
+    }
+
+    public String getIsDockerEnv() {
+        return isDockerEnv;
+    }
+
+    public void setIsDockerEnv(String isDockerEnv) {
+        this.isDockerEnv = isDockerEnv;
     }
 }
