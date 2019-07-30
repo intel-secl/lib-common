@@ -37,7 +37,7 @@ public class CMSClient extends MtWilsonClient {
                 .path("/certificates")
                 .queryParam("certType", "Flavor-Signing")
                 .request()
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + super.getConfiguration().get("aas.bearer.token"))
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + super.getConfiguration().get("bearer.token"))
                 .accept(CryptoMediaType.APPLICATION_X_PEM_FILE)
                 .post(Entity.entity(flavorSigningCSR, CryptoMediaType.APPLICATION_X_PEM_FILE), X509Certificate.class);
         return flavorSigningCertificate;
