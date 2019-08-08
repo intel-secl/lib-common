@@ -151,7 +151,6 @@ public class CMSClient extends MtWilsonClient {
 
     public X509Certificate getCertificate(String csr, String certificateType) {
         log.info("target: {}", getTarget().getUri().toString());
-        csr = csr.replace("\r\n", "");
         X509Certificate certificate = getTarget()
                 .path("/certificates")
                 .queryParam("certType", certificateType)
