@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 package com.intel.mtwilson.core.common.utils;
+import com.intel.dcsg.cpg.tls.policy.TlsPolicy;
 import com.intel.dcsg.cpg.tls.policy.TlsConnection;
 import com.intel.dcsg.cpg.tls.policy.impl.InsecureTlsPolicy;
 import com.intel.mtwilson.jaxrs2.UserCredential;
@@ -17,9 +18,7 @@ import java.util.Properties;
 public class AASTokenFetcher {
     private final static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AASTokenFetcher.class);
 
-    public String getAASToken(String aasApiUrl, String username, String password) throws Exception {
-        log.debug("Using AAS API URL to fetch token - {}", aasApiUrl);
-        TlsConnection tlsConnection = new TlsConnection(new URL(aasApiUrl), new InsecureTlsPolicy());
+    public String getAASToken(String username, String password, TlsConnection tlsConnection) throws Exception {
         Properties clientConfiguration = new Properties();
         AASClient aasClient = new AASClient(clientConfiguration, tlsConnection);
         UserCredential credential = new UserCredential();

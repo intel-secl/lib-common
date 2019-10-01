@@ -9,8 +9,9 @@ import java.util.List;
  */
 public enum CertificateType {
     TLS("TLS"),
-    FLAVOR_SIGNING("Flavor-Signing"),
-    JWT_SIGNING("JWT-Signing");
+    JWT_SIGNING("JWT-Signing"),
+    SIGNING("Signing"),
+    SIGNING_CA("Signing-CA");
 
     private String value;
 
