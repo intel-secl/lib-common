@@ -5,6 +5,7 @@
 package com.intel.mtwilson.core.common.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.intel.dcsg.cpg.validation.ObjectModel;
 import com.intel.dcsg.cpg.crypto.DigestAlgorithm;
 
@@ -43,6 +44,7 @@ import java.util.Map;
  * @since 0.5.4
  * @author jbuhacoff
  */
+@JsonIgnoreProperties({"pcrs", "pcr_event_logs"})
 public class PcrManifest extends ObjectModel {
     private final PcrSha1[] sha1pcrs = new PcrSha1[24];    
     private final PcrSha256[] sha2pcrs = new PcrSha256[24];
