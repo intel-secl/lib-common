@@ -12,8 +12,7 @@ public enum HardwareFeature {
     TPM("TPM"),
     TXT("TXT"),
     CBNT("CBNT"),
-    SUEFI("SUEFI"),
-    MKTME("MKTME");
+    SUEFI("SUEFI");
 
     private String value;
 

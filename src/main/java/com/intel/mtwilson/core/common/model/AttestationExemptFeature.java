@@ -11,5 +11,4 @@ package com.intel.mtwilson.core.common.model;
  * @author rawatar
  */
 public enum AttestationExemptFeature {
-    MKTME;
 }
