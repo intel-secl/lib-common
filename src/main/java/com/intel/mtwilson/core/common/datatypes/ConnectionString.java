@@ -252,7 +252,7 @@ public class ConnectionString {
 
         if (this.vendor == Vendor.INTEL) {
             connectionString = (this.addOnConnectionString.isEmpty())
-                    ? String.format("https://%s:%d/;%s;%s", this.managementServerName, this.port, this.userName, this.password)
+                    ? String.format("https://%s:%d/", this.managementServerName, this.port)
                     : String.format("%s", this.addOnConnectionString);
         } else if (this.vendor == Vendor.VMWARE) {
             connectionString = (this.addOnConnectionString.isEmpty())
