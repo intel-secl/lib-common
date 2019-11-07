@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 package com.intel.mtwilson.core.common.utils;
-import com.intel.dcsg.cpg.tls.policy.TlsPolicy;
+
 import com.intel.dcsg.cpg.tls.policy.TlsConnection;
-import com.intel.dcsg.cpg.tls.policy.impl.InsecureTlsPolicy;
 import com.intel.mtwilson.jaxrs2.UserCredential;
 import com.intel.mtwilson.jaxrs2.client.AASClient;
 
-import java.net.URL;
 import java.util.Properties;
 
 /**
