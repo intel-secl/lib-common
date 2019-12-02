@@ -41,7 +41,7 @@ public class HostInfo {
     @XmlElement(name = "clientIp",required = true)
     protected String clientIp;
     @XmlElement(name = "errorCode",required = true)
-    protected byte errorCode;
+    protected String errorCode;
     @XmlElement(name = "errorMessage",required = true)
     protected String errorMessage;
     @XmlElement(name = "hostUUID",required = true)
@@ -129,7 +129,7 @@ public class HostInfo {
      * Gets the value of the errorCode property.
      * 
      */
-    public byte getErrorCode() {
+    public String getErrorCode() {
         return errorCode;
     }
 
@@ -137,7 +137,7 @@ public class HostInfo {
      * Sets the value of the errorCode property.
      * 
      */
-    public void setErrorCode(byte value) {
+    public void setErrorCode(String value) {
         this.errorCode = value;
     }
 	
