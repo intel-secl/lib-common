@@ -39,10 +39,10 @@ public class AASTokenFetcher {
             String[] splitToken = aasToken.split("\\.");
             JwtBody jwtBody = mapper.readValue(new String( Base64.decode(splitToken[1])).replaceAll("\0+", "\"}").
                 replaceAll("\"{2,}", "\"").getBytes(), JwtBody.class);
-            Date currentDate = new Date(System.currentTimeMillis()/1000);
-            Date tokenExpDate = new Date(Long.parseLong(jwtBody.getExp()));
-            if(currentDate.after(tokenExpDate)) {
-                log.debug("Token expired, fetching new token from AAS");
+            Date currentDate = new Date(System.currentTimeMillis());
+            Date tokenExpDate = new Date(Long.parseLong(jwtBody.getExp()) * 1000);
+            if (currentDate.after(tokenExpDate)) {
+                log.debug("Current time is {}, token expired at {} fetching new token from AAS",currentDate, tokenExpDate);
                 aasToken = getAASToken(userName, password, tlsConnection);
             }
             return aasToken;
