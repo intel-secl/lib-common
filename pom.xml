@@ -3,7 +3,7 @@
     
     <groupId>com.intel.mtwilson.core</groupId>
     <artifactId>lib-common</artifactId>
-    <version>1.4</version>
+    <version>1.4.1</version>
     
     <description>
         This is a repository used to store common classes shared amongst the new Library model (repos starting with lib-*).
@@ -13,7 +13,7 @@
     <parent>
         <groupId>com.intel.mtwilson.maven</groupId>
         <artifactId>mtwilson-maven-java</artifactId>
-        <version>5.0-SNAPSHOT</version>
+        <version>5.1-SNAPSHOT</version>
         <relativePath/>
     </parent>
     
