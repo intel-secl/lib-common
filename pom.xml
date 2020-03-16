@@ -51,13 +51,7 @@
                         </configuration>
                         <id>lib-wml-manifest-xml</id>
                     </execution>
-                </executions>
-            </plugin>
 
-            <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <executions>
                     <execution>
                         <goals>
                             <goal>generate</goal>
