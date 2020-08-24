@@ -24,7 +24,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * are not considered equal.
  * 
  * For the purpose of determining if a given host complies with a policy 
- * (matches the whitelist), you need to have an expected (whitelisted) 
+ * (matches the passlist), you need to have an expected (passlisted) 
  * PcrModuleManifest and an actual (from the HostReport)  PcrModuleManifest, and
  * compare the expected to the actual. 
  * 

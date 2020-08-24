@@ -23,7 +23,7 @@ import java.util.Map;
  * 
  * DO NOT USE THIS CLASS AS A "WHITELIST", IT IS ONLY FOR "ACTUAL" VALUES.
  * 
- * Bug #607 the whitelist is now represented as a collection of TrustPolicy 
+ * Bug #607 the passlist is now represented as a collection of TrustPolicy 
  * instances, which is much more powerful than a list of PCR's and their 
  * values because those policy instances can also encapsulate formulas with
  * variables that allow us to verify things such as a host's UUID being extended 
