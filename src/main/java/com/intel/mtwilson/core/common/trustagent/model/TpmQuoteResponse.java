@@ -19,7 +19,6 @@ import java.util.List;
 @JacksonXmlRootElement(localName="tpm_quote_response")
 public class TpmQuoteResponse {
     public long timestamp;
-    public String clientIp;
     public String errorCode;
     public String errorMessage;
     @JsonSerialize(using=X509CertificateSerializer.class)
@@ -38,7 +37,6 @@ public class TpmQuoteResponse {
         String responseXML =
                 "<client_request> "
                 + "<timestamp>" + new Date(System.currentTimeMillis()).toString() + "</timestamp>"
-                + "<clientIp>" + StringEscapeUtils.escapeXml(CommandUtil.getHostIpAddress()) + "</clientIp>"
                 + "<error_code>" + context.getErrorCode().getErrorCode() + "</error_code>"
                 + "<error_message>" + StringEscapeUtils.escapeXml(context.getErrorCode().getMessage()) + "</error_message>"
                 + "<aikcert>" + StringEscapeUtils.escapeXml(context.getAIKCertificate()) + "</aikcert>"
